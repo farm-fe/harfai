@@ -176,6 +176,25 @@ harfai/
 - `pnpm test:e2e` — Playwright E2E tests
 - `pnpm openapi:validate` — OpenAPI spec validity
 
+## Branch Protection Policy
+
+The `main` branch enforces the following merge requirements:
+
+| Rule                       | Value                                              |
+| -------------------------- | -------------------------------------------------- |
+| Required status checks     | **Lint, Build & Test** and **E2E Tests** must pass |
+| Up-to-date branch required | Yes — PR must be rebased/updated before merge      |
+| Linear commit history      | Yes — squash or rebase only (no merge commits)     |
+| Force-pushes               | Disabled                                           |
+| Branch deletion            | Disabled                                           |
+| Conversation resolution    | All PR threads must be resolved                    |
+| Applies to admins          | Yes                                                |
+
+Branch protection is applied by the workflow at
+`.github/workflows/protect-main.yml` (triggered on push to `main` or via
+`workflow_dispatch`). See `docs/branch-protection.md` for full details and
+the manual curl command.
+
 ---
 
 ## AI Agent Template Support
