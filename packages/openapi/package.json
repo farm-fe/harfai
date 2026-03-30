@@ -8,6 +8,9 @@
     "generate": "echo 'Type generation from spec (extend with openapi-typescript)'",
     "lint": "echo 'No TS linting for this package'"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@apidevtools/swagger-parser": "12.1.0"
   }
