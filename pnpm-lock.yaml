@@ -153,10 +153,10 @@ importers:
         version: 2.1.9(@types/node@20.19.37)(jsdom@24.1.3)(msw@2.12.14(@types/node@20.19.37)(typescript@5.9.3))
 
   packages/openapi:
-    devDependencies:
-      '@readme/openapi-parser':
-        specifier: ^2.6.0
-        version: 2.7.0(openapi-types@12.1.3)
+    dependencies:
+      '@apidevtools/swagger-parser':
+        specifier: 12.1.0
+        version: 12.1.0(openapi-types@12.1.3)
 
   packages/shared:
     dependencies:
@@ -178,11 +178,33 @@ packages:
         integrity: sha512-Elp+iwUx5rN5+Y8xLt5/GRoG20WGoDCQ/1Fb+1LiGtvwbDavuSk0jhD/eZdckHAuzcDzccnkv+rEjyWfRx18gg==,
       }
 
+  '@apidevtools/json-schema-ref-parser@14.0.1':
+    resolution:
+      {
+        integrity: sha512-Oc96zvmxx1fqoSEdUmfmvvb59/KDOnUoJ7s2t7bISyAn0XEz57LCCw8k2Y4Pf3mwKaZLMciESALORLgfe2frCw==,
+      }
+    engines: { node: '>= 16' }
+
+  '@apidevtools/openapi-schemas@2.1.0':
+    resolution:
+      {
+        integrity: sha512-Zc1AlqrJlX3SlpupFGpiLi2EbteyP7fXmUOGup6/DnkRgjP9bgMM/ag+n91rsv0U1Gpz0H3VILA/o3bW7Ua6BQ==,
+      }
+    engines: { node: '>=10' }
+
   '@apidevtools/swagger-methods@3.0.2':
     resolution:
       {
         integrity: sha512-QAkD5kK2b1WfjDS/UQn/qQkbwF31uqRjPTrsCs5ZG9BQGAkjwvqGFjjPqAuzac/IYzpPtRzjCP1WrTuAIjMrXg==,
       }
+
+  '@apidevtools/swagger-parser@12.1.0':
+    resolution:
+      {
+        integrity: sha512-e5mJoswsnAX0jG+J09xHFYQXb/bUc5S3pLpMxUuRUA2H8T2kni3yEoyz2R3Dltw5f4A6j6rPNMpWTK+iVDFlng==,
+      }
+    peerDependencies:
+      openapi-types: '>=7'
 
   '@asamuzakjp/css-color@3.2.0':
     resolution:
@@ -593,13 +615,6 @@ packages:
         integrity: sha512-Waj1cwPXJDucOib4a3bAISsKJVb15MKi9IvmTI/7ssVEm6sywXGjVJDhl6/umt1pK1ZS7PacXU3A1PmFKHEZ2w==,
       }
 
-  '@humanwhocodes/momoa@2.0.4':
-    resolution:
-      {
-        integrity: sha512-RE815I4arJFtt+FVeU1Tgp9/Xvecacji8w/V6XtXsWWH/wz/eNkNbhb+ny/+PlVZjV0rxQpRSQKNKE3lcktHEA==,
-      }
-    engines: { node: '>=10.10.0' }
-
   '@inquirer/ansi@1.0.2':
     resolution:
       {
@@ -681,12 +696,6 @@ packages:
         integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==,
       }
 
-  '@jsdevtools/ono@7.1.3':
-    resolution:
-      {
-        integrity: sha512-4JQNk+3mVzK3xh2rqd6RB4J46qUR19azEHBneZyTZM+c456qOrbbM/5xcR8huNCCcbVt7+UmizG6GuUvPvKUYg==,
-      }
-
   '@koa/cors@5.0.0':
     resolution:
       {
@@ -753,38 +762,6 @@ packages:
       }
     engines: { node: '>=18' }
     hasBin: true
-
-  '@readme/better-ajv-errors@2.4.0':
-    resolution:
-      {
-        integrity: sha512-9WODaOAKSl/mU+MYNZ2aHCrkoRSvmQ+1YkLj589OEqqjOAhbn8j7Z+ilYoiTu/he6X63/clsxxAB4qny9/dDzg==,
-      }
-    engines: { node: '>=18' }
-    peerDependencies:
-      ajv: 4.11.8 - 8
-
-  '@readme/json-schema-ref-parser@1.2.0':
-    resolution:
-      {
-        integrity: sha512-Bt3QVovFSua4QmHa65EHUmh2xS0XJ3rgTEUPH998f4OW4VVJke3BuS16f+kM0ZLOGdvIrzrPRqwihuv5BAjtrA==,
-      }
-    deprecated: This package is no longer maintained. Please use `@apidevtools/json-schema-ref-parser` instead.
-
-  '@readme/openapi-parser@2.7.0':
-    resolution:
-      {
-        integrity: sha512-P8WSr8WTOxilnT89tcCRKWYsG/II4sAwt1a/DIWub8xTtkrG9cCBBy/IUcvc5X8oGWN82MwcTA3uEkDrXZd/7A==,
-      }
-    engines: { node: '>=18' }
-    peerDependencies:
-      openapi-types: '>=7'
-
-  '@readme/openapi-schemas@3.1.0':
-    resolution:
-      {
-        integrity: sha512-9FC/6ho8uFa8fV50+FPy/ngWN53jaUu4GRXlAjcxIRrzhltJnpKkBG2Tp0IDraFJeWrOpk84RJ9EMEEYzaI1Bw==,
-      }
-    engines: { node: '>=18' }
 
   '@remix-run/router@1.23.2':
     resolution:
@@ -2217,13 +2194,6 @@ packages:
     engines: { node: '>=6' }
     hasBin: true
 
-  jsonpointer@5.0.1:
-    resolution:
-      {
-        integrity: sha512-p/nXbhSEcu3pZRdkW1OfJhpsVtW1gd4Wa1fnQc9YLiTfAjn0312eMKimbdIQzuZl9aa9xUGaRlP9T/CJE/ditQ==,
-      }
-    engines: { node: '>=0.10.0' }
-
   keygrip@1.1.0:
     resolution:
       {
@@ -2256,13 +2226,6 @@ packages:
         integrity: sha512-3An0GCLDSR34tsCO4H8Tef8Pp2ngtaZDAZnsWJYelqXUK5wyiHvGItgK/xcSkmHLSTn1Jcho1mRQs2ehRzvKKw==,
       }
     engines: { node: ^4.8.4 || ^6.10.1 || ^7.10.1 || >= 8.1.4 }
-
-  leven@3.1.0:
-    resolution:
-      {
-        integrity: sha512-qsda+H8jTaUaN/x5vzW2rzc+8Rw4TAQ/4KjB46IwK5VH+IlVeeeje/EoZRpiXvIqjFgK84QffqPztGI3VBLG1A==,
-      }
-    engines: { node: '>=6' }
 
   loose-envify@1.4.0:
     resolution:
@@ -3344,7 +3307,24 @@ packages:
 snapshots:
   '@adobe/css-tools@4.4.4': {}
 
+  '@apidevtools/json-schema-ref-parser@14.0.1':
+    dependencies:
+      '@types/json-schema': 7.0.15
+      js-yaml: 4.1.1
+
+  '@apidevtools/openapi-schemas@2.1.0': {}
+
   '@apidevtools/swagger-methods@3.0.2': {}
+
+  '@apidevtools/swagger-parser@12.1.0(openapi-types@12.1.3)':
+    dependencies:
+      '@apidevtools/json-schema-ref-parser': 14.0.1
+      '@apidevtools/openapi-schemas': 2.1.0
+      '@apidevtools/swagger-methods': 3.0.2
+      ajv: 8.18.0
+      ajv-draft-04: 1.0.0(ajv@8.18.0)
+      call-me-maybe: 1.0.2
+      openapi-types: 12.1.3
 
   '@asamuzakjp/css-color@3.2.0':
     dependencies:
@@ -3559,8 +3539,6 @@ snapshots:
 
   '@hapi/bourne@3.0.0': {}
 
-  '@humanwhocodes/momoa@2.0.4': {}
-
   '@inquirer/ansi@1.0.2': {}
 
   '@inquirer/confirm@5.1.21(@types/node@20.19.37)':
@@ -3608,8 +3586,6 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@jsdevtools/ono@7.1.3': {}
-
   '@koa/cors@5.0.0':
     dependencies:
       vary: 1.1.2
@@ -3653,37 +3629,6 @@ snapshots:
   '@playwright/test@1.58.2':
     dependencies:
       playwright: 1.58.2
-
-  '@readme/better-ajv-errors@2.4.0(ajv@8.18.0)':
-    dependencies:
-      '@babel/code-frame': 7.29.0
-      '@babel/runtime': 7.29.2
-      '@humanwhocodes/momoa': 2.0.4
-      ajv: 8.18.0
-      jsonpointer: 5.0.1
-      leven: 3.1.0
-      picocolors: 1.1.1
-
-  '@readme/json-schema-ref-parser@1.2.0':
-    dependencies:
-      '@jsdevtools/ono': 7.1.3
-      '@types/json-schema': 7.0.15
-      call-me-maybe: 1.0.2
-      js-yaml: 4.1.1
-
-  '@readme/openapi-parser@2.7.0(openapi-types@12.1.3)':
-    dependencies:
-      '@apidevtools/swagger-methods': 3.0.2
-      '@jsdevtools/ono': 7.1.3
-      '@readme/better-ajv-errors': 2.4.0(ajv@8.18.0)
-      '@readme/json-schema-ref-parser': 1.2.0
-      '@readme/openapi-schemas': 3.1.0
-      ajv: 8.18.0
-      ajv-draft-04: 1.0.0(ajv@8.18.0)
-      call-me-maybe: 1.0.2
-      openapi-types: 12.1.3
-
-  '@readme/openapi-schemas@3.1.0': {}
 
   '@remix-run/router@1.23.2': {}
 
@@ -4478,8 +4423,6 @@ snapshots:
 
   json5@2.2.3: {}
 
-  jsonpointer@5.0.1: {}
-
   keygrip@1.1.0:
     dependencies:
       tsscmp: 1.0.6
@@ -4527,8 +4470,6 @@ snapshots:
       vary: 1.1.2
     transitivePeerDependencies:
       - supports-color
-
-  leven@3.1.0: {}
 
   loose-envify@1.4.0:
     dependencies:
