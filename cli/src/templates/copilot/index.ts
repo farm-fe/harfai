@@ -16,14 +16,14 @@ See [AGENTS.md](../AGENTS.md) for the full agent guide.
 - \`@harfai/shared\` Zod schemas for validation (both frontend and backend)
 - TanStack Query hooks for data fetching in React components
 - \`@koa/router\` for Koa routes with \`/api/v1/\` prefix
-- CSS Modules for component styling
+- Tailwind CSS v4 utility classes directly in JSX for styling
 - pino for backend logging
 
 ### Never use:
 - \`axios\` (use fetch + TanStack Query)
 - \`express\` or \`fastify\` (use Koa)
 - \`moment\` (use Intl or date-fns)
-- Inline styles in React (use CSS Modules)
+- Inline styles in React (use Tailwind CSS utility classes)
 - Class components (use functional components)
 
 ## Workflow

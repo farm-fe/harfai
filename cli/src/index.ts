@@ -5,7 +5,7 @@ import { createCommand } from './commands/create.js';
 
 const pkg = { version: '0.1.0', description: 'Harfai full-stack framework scaffolding CLI' };
 
-program.name('create-harfai').description(pkg.description).version(pkg.version);
+program.name('create-harfai').description(pkg.description).version(pkg.version).enablePositionalOptions();
 
 program
   .command('init')
