@@ -1,0 +1,27 @@
+{
+  "name": "harfai",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Full-stack self-evolution framework powered by Harness Engineering and FarmFE",
+  "packageManager": "pnpm@9.15.9",
+  "scripts": {
+    "dev": "pnpm --parallel -r run dev",
+    "build": "pnpm -r run build",
+    "lint": "pnpm -r run lint",
+    "lint:fix": "pnpm -r run lint:fix",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,yaml,yml}\" --ignore-path .prettierignore",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md,yaml,yml}\" --ignore-path .prettierignore",
+    "test": "pnpm --filter '!@harfai/e2e' -r run test",
+    "test:e2e": "pnpm --filter @harfai/e2e run test",
+    "openapi:validate": "pnpm --filter @harfai/openapi run validate",
+    "openapi:generate": "pnpm --filter @harfai/openapi run generate",
+    "clean": "pnpm -r run clean && rm -rf node_modules"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=9.0.0"
+  }
+}
