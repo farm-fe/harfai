@@ -41,7 +41,7 @@ The repo is a **pnpm monorepo** with the following packages:
 - State management: **Zustand** for global state, `useState`/`useReducer` for local state.
 - Data fetching: **TanStack Query** (React Query) — never fetch in `useEffect` directly.
 - Routing: **React Router v6** with file-based route organization under `src/pages/`.
-- Styling: **CSS Modules** — one `*.module.css` per component; no inline styles except dynamic values.
+- Styling: **Tailwind CSS v4** — use utility classes directly in JSX. Only use CSS Modules for cases that Tailwind cannot satisfy (e.g. complex keyframe animations, third-party component overrides).
 - Performance: `React.memo`, `useMemo`, `useCallback` only when profiling shows benefit.
 - Error boundaries: wrap every route-level component.
 - Accessibility: all interactive elements must have accessible labels; run `axe-core` in CI.
@@ -77,27 +77,27 @@ The repo is a **pnpm monorepo** with the following packages:
 
 ## Tech Stack Constraints
 
-| Layer              | Technology     | Version | Notes                             |
-| ------------------ | -------------- | ------- | --------------------------------- |
-| Build (frontend)   | FarmFE         | `^1.0`  | `farm.config.ts` in each package  |
-| Build (backend)    | FarmFE         | `^1.0`  | Node output format                |
-| Frontend framework | React          | `^18`   | With TypeScript                   |
-| Routing            | React Router   | `^6`    |                                   |
-| State              | Zustand        | `^4`    |                                   |
-| Data fetching      | TanStack Query | `^5`    |                                   |
-| Styling            | CSS Modules    | native  |                                   |
-| Backend framework  | Koa            | `^2`    |                                   |
-| HTTP routing       | koa-router     | `^12`   |                                   |
-| Body parsing       | koa-body       | `^6`    |                                   |
-| Validation         | Zod            | `^3`    | Shared between frontend & backend |
-| Logging            | pino           | `^9`    | Backend only                      |
-| API spec           | OpenAPI        | `3.1`   | `packages/openapi/spec.yaml`      |
-| Unit testing       | Vitest         | `^2`    |                                   |
-| E2E testing        | Playwright     | `^1.45` |                                   |
-| Linting            | ESLint         | `^9`    | Flat config                       |
-| Formatting         | Prettier       | `^3`    |                                   |
-| Package manager    | pnpm           | `^9`    | Workspaces                        |
-| Node               | ≥18            |         | LTS line                          |
+| Layer              | Technology     | Version | Notes                                                        |
+| ------------------ | -------------- | ------- | ------------------------------------------------------------ |
+| Build (frontend)   | FarmFE         | `^1.0`  | `farm.config.ts` in each package                             |
+| Build (backend)    | FarmFE         | `^1.0`  | Node output format                                           |
+| Frontend framework | React          | `^18`   | With TypeScript                                              |
+| Routing            | React Router   | `^6`    |                                                              |
+| State              | Zustand        | `^4`    |                                                              |
+| Data fetching      | TanStack Query | `^5`    |                                                              |
+| Styling            | Tailwind CSS   | `^4`    | Utility-first; CSS Modules only when Tailwind cannot satisfy |
+| Backend framework  | Koa            | `^2`    |                                                              |
+| HTTP routing       | koa-router     | `^12`   |                                                              |
+| Body parsing       | koa-body       | `^6`    |                                                              |
+| Validation         | Zod            | `^3`    | Shared between frontend & backend                            |
+| Logging            | pino           | `^9`    | Backend only                                                 |
+| API spec           | OpenAPI        | `3.1`   | `packages/openapi/spec.yaml`                                 |
+| Unit testing       | Vitest         | `^2`    |                                                              |
+| E2E testing        | Playwright     | `^1.45` |                                                              |
+| Linting            | ESLint         | `^9`    | Flat config                                                  |
+| Formatting         | Prettier       | `^3`    |                                                              |
+| Package manager    | pnpm           | `^9`    | Workspaces                                                   |
+| Node               | ≥18            |         | LTS line                                                     |
 
 **Prohibited:**
 

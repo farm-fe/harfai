@@ -1,16 +1,15 @@
 import { useUsers } from '../../api/hooks/useUsers';
-import styles from './index.module.css';
 
 export function UsersPage() {
   const { data, isPending, error } = useUsers();
 
   if (isPending) {
-    return <div className={styles.state}>Loading users…</div>;
+    return <div className="text-center p-10 text-gray-500">Loading users…</div>;
   }
 
   if (error) {
     return (
-      <div className={styles.state} role="alert">
+      <div className="text-center p-10 text-gray-500" role="alert">
         Error: {error.message}
       </div>
     );
@@ -19,16 +18,19 @@ export function UsersPage() {
   const users = data?.data ?? [];
 
   return (
-    <main className={styles.main}>
-      <h1 className={styles.heading}>Users</h1>
+    <main className="max-w-3xl mx-auto mt-10 px-6">
+      <h1 className="text-3xl font-bold mb-6 text-gray-900">Users</h1>
       {users.length === 0 ? (
-        <p className={styles.empty}>No users yet.</p>
+        <p className="text-gray-500 italic">No users yet.</p>
       ) : (
-        <ul className={styles.list}>
+        <ul className="list-none p-0 m-0 flex flex-col gap-3">
           {users.map((user) => (
-            <li key={user.id} className={styles.item}>
+            <li
+              key={user.id}
+              className="flex justify-between items-center p-4 border border-gray-200 rounded-lg bg-white"
+            >
               <strong>{user.name}</strong>
-              <span className={styles.email}>{user.email}</span>
+              <span className="text-gray-500 text-sm">{user.email}</span>
             </li>
           ))}
         </ul>

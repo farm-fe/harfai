@@ -2,18 +2,18 @@
 
 ## Stack
 
-| Tool                  | Version | Role                         |
-| --------------------- | ------- | ---------------------------- |
-| React                 | ^18     | UI framework                 |
-| FarmFE                | ^1.0    | Build tool / dev server      |
-| TypeScript            | ^5      | Language                     |
-| React Router          | ^6      | Client-side routing          |
-| Zustand               | ^4      | Global state                 |
-| TanStack Query        | ^5      | Server state / data fetching |
-| CSS Modules           | native  | Component styling            |
-| Zod                   | ^3      | Form validation              |
-| Vitest                | ^2      | Unit & component testing     |
-| React Testing Library | ^16     | DOM testing utilities        |
+| Tool                  | Version | Role                              |
+| --------------------- | ------- | --------------------------------- |
+| React                 | ^18     | UI framework                      |
+| FarmFE                | ^1.0    | Build tool / dev server           |
+| TypeScript            | ^5      | Language                          |
+| React Router          | ^6      | Client-side routing               |
+| Zustand               | ^4      | Global state                      |
+| TanStack Query        | ^5      | Server state / data fetching      |
+| Tailwind CSS          | ^4      | Component styling (utility-first) |
+| Zod                   | ^3      | Form validation                   |
+| Vitest                | ^2      | Unit & component testing          |
+| React Testing Library | ^16     | DOM testing utilities             |
 
 ## Directory Structure
 
@@ -63,7 +63,7 @@ pnpm test:watch   # Vitest in watch mode
 - Always functional, never class-based.
 - One component per file.
 - Export as named export at the top of the module, default at the bottom.
-- CSS class names come from `*.module.css` — never inline.
+- Style with **Tailwind CSS** utility classes directly in JSX. Only reach for CSS Modules when Tailwind cannot satisfy requirements (e.g. complex keyframe animations, `@apply` patterns for third-party overrides).
 
 ### Data Fetching
 
