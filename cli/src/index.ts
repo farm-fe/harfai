@@ -15,6 +15,7 @@ program
     'Agent type: claude | cursor | trae | copilot | generic | all',
     'generic',
   )
+  .option('--workflow <workflow>', 'Workflow type: openspec | superpower | all')
   .option('--cwd <path>', 'Target directory', process.cwd())
   .action(initCommand);
 

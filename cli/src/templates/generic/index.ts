@@ -1,6 +1,6 @@
-import type { AgentTemplate } from '../index.js';
+import type { ConfigTemplate } from '../index.js';
 
-export const genericTemplate: AgentTemplate = {
+export const genericTemplate: ConfigTemplate = {
   outputPath: 'AGENTS.md',
   content: `# AGENTS.md
 

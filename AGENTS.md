@@ -35,6 +35,42 @@ The repo is a **pnpm monorepo** with the following packages:
 
 ## Internal Skills
 
+### Superpower: Brainstorming Workflow
+
+Before committing to any design or implementation, use **Superpower** to freely
+explore ideas, surface trade-offs, and pick a direction.
+
+- **When**: any non-trivial feature, refactor, or API addition.
+- **Output**: a brainstorm file at `.openspec/brainstorms/<YYYY-MM-DD>-<slug>.md`.
+- **Rules**:
+  1. Always document at least two alternative approaches.
+  2. Record rejected ideas and _why_ they were rejected.
+  3. End the brainstorm with a clearly selected approach.
+  4. Transition immediately to an OpenSpec proposal when done.
+- **Scaffold**: `npx create-harfai init --workflow superpower`
+- **Full guide**: [docs/superpower.md](docs/superpower.md)
+
+### OpenSpec: Proposal & Task Workflow
+
+After Superpower selects a direction, use **OpenSpec** to design a structured
+proposal with explicit, testable tasks.
+
+- **When**: always follow a Superpower brainstorm.
+- **Output**: a proposal file at `.openspec/proposals/<slug>.md`.
+- **Rules**:
+  1. Every task **must** include a `Test Command` (shell command that exits 0 when passing).
+  2. A task is only `done` when the test command exits with code 0 — never mark it done otherwise.
+  3. Tasks must be small enough to be completed and tested independently.
+  4. Proposals follow the lifecycle: `draft → review → accepted → in-progress → done`.
+- **Scaffold**: `npx create-harfai init --workflow openspec`
+- **Full guide**: [docs/openspec.md](docs/openspec.md)
+
+### Combined Workflow
+
+```
+Superpower (brainstorm)  →  Select approach  →  OpenSpec (proposal + tasks)  →  Tests pass  →  Done
+```
+
 ### React Best Practices
 
 - Functional components only; no class components.
@@ -119,12 +155,18 @@ harfai/
 ├── pnpm-workspace.yaml
 ├── .prettierrc.yaml
 ├── .eslintrc-base.js           ← Shared ESLint base config
+├── .openspec/                  ← Superpower brainstorms & OpenSpec proposals
+│   ├── README.md
+│   ├── brainstorms/            ← .../YYYY-MM-DD-<slug>.md
+│   └── proposals/              ← .../<slug>.md
 ├── docs/
 │   ├── architecture.md
 │   ├── frontend.md
 │   ├── backend.md
 │   ├── testing.md
 │   ├── openapi.md
+│   ├── superpower.md           ← Brainstorming workflow guide
+│   ├── openspec.md             ← Proposal & task workflow guide
 │   └── agent-integration.md
 ├── packages/
 │   ├── frontend/               ← @harfai/frontend
@@ -139,24 +181,32 @@ harfai/
 
 ## How Agents Should Work
 
+### Starting Any Non-Trivial Task
+
+1. **Brainstorm** with Superpower — create `.openspec/brainstorms/<date>-<slug>.md`.
+2. **Propose** with OpenSpec — create `.openspec/proposals/<slug>.md` with testable tasks.
+3. Work through tasks; run each task's `Test Command` before marking it `done`.
+
 ### Adding a New API Endpoint
 
-1. Add the endpoint to `packages/openapi/spec.yaml` (OpenAPI 3.1).
-2. Run `pnpm openapi:generate` to regenerate client types.
-3. Implement the Koa route in `packages/backend/src/routes/`.
-4. Add input validation with Zod.
-5. Write unit tests in `packages/backend/src/routes/*.test.ts`.
-6. Add a Playwright test in `packages/e2e/tests/` if it's user-facing.
-7. Update `docs/backend.md` if the route adds a new resource.
+1. Brainstorm and propose with Superpower → OpenSpec (see above).
+2. Add the endpoint to `packages/openapi/spec.yaml` (OpenAPI 3.1).
+3. Run `pnpm openapi:generate` to regenerate client types.
+4. Implement the Koa route in `packages/backend/src/routes/`.
+5. Add input validation with Zod.
+6. Write unit tests in `packages/backend/src/routes/*.test.ts`.
+7. Add a Playwright test in `packages/e2e/tests/` if it's user-facing.
+8. Update `docs/backend.md` if the route adds a new resource.
 
 ### Adding a New Frontend Feature
 
-1. Create the page/component in `packages/frontend/src/pages/` or `components/`.
-2. Use TanStack Query hooks from `packages/frontend/src/api/`.
-3. Write unit/component tests with Vitest + React Testing Library.
-4. Run `pnpm lint` and fix any issues.
-5. Add an E2E scenario if the feature is user-facing.
-6. Update `docs/frontend.md`.
+1. Brainstorm and propose with Superpower → OpenSpec (see above).
+2. Create the page/component in `packages/frontend/src/pages/` or `components/`.
+3. Use TanStack Query hooks from `packages/frontend/src/api/`.
+4. Write unit/component tests with Vitest + React Testing Library.
+5. Run `pnpm lint` and fix any issues.
+6. Add an E2E scenario if the feature is user-facing.
+7. Update `docs/frontend.md`.
 
 ### Updating Dependencies
 
@@ -210,6 +260,16 @@ The `create-harfai` CLI (`cli/`) can scaffold agent config files for:
 | Generic        | `create-harfai init --agent generic` |
 
 Each template writes the appropriate config file (`.claude/settings.json`, `.cursorrules`, `.trae/config.yaml`, `.github/copilot-instructions.md`) and links back to this `AGENTS.md`.
+
+### Workflow Templates
+
+The CLI also scaffolds workflow templates for the Superpower and OpenSpec skills:
+
+| Workflow   | Command                                    | Output                              |
+| ---------- | ------------------------------------------ | ----------------------------------- |
+| Superpower | `create-harfai init --workflow superpower` | `.openspec/brainstorms/template.md` |
+| OpenSpec   | `create-harfai init --workflow openspec`   | `.openspec/proposals/template.md`   |
+| Both       | `create-harfai init --workflow all`        | both files above                    |
 
 ---
 

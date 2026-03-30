@@ -82,6 +82,34 @@ pnpm --filter @harfai/frontend dev    # React dev server with HMR
 
 ---
 
+## Development Workflow
+
+Harfai uses a two-stage AI-agent workflow for all non-trivial changes:
+
+### 1. Superpower — Brainstorm first
+
+Before any implementation, brainstorm freely to explore approaches and select the best one.
+
+```bash
+# Scaffold a brainstorm template
+npx create-harfai init --workflow superpower
+# Edit .openspec/brainstorms/template.md — rename to YYYY-MM-DD-<slug>.md
+```
+
+### 2. OpenSpec — Design testable tasks
+
+Convert the chosen approach into a structured proposal where every task has a test command. A task is only `done` when its tests pass.
+
+```bash
+# Scaffold a proposal template
+npx create-harfai init --workflow openspec
+# Edit .openspec/proposals/template.md — rename to <slug>.md
+```
+
+See [docs/superpower.md](docs/superpower.md) and [docs/openspec.md](docs/openspec.md) for the full workflow guides.
+
+---
+
 ## AI Agent Support
 
 Initialize agent-specific config files using the CLI:

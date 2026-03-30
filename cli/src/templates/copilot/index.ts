@@ -1,6 +1,6 @@
-import type { AgentTemplate } from '../index.js';
+import type { ConfigTemplate } from '../index.js';
 
-export const copilotTemplate: AgentTemplate = {
+export const copilotTemplate: ConfigTemplate = {
   outputPath: '.github/copilot-instructions.md',
   content: `# GitHub Copilot Instructions for Harfai
 
