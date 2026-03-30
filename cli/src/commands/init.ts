@@ -4,22 +4,35 @@ import pc from 'picocolors';
 import { getTemplate } from '../templates/index.js';
 
 type AgentType = 'claude' | 'cursor' | 'trae' | 'copilot' | 'generic' | 'all';
+type WorkflowType = 'openspec' | 'superpower' | 'all';
 
 interface InitOptions {
   agent: string;
+  workflow?: string;
   cwd: string;
 }
 
 export function initCommand(options: InitOptions): void {
-  const agent = options.agent as AgentType;
   const cwd = options.cwd ?? process.cwd();
-  const agents: AgentType[] =
-    agent === 'all' ? ['claude', 'cursor', 'trae', 'copilot', 'generic'] : [agent];
 
-  console.log(pc.bold(pc.blue('\n🤖 Harfai Agent Config Initializer\n')));
+  console.log(pc.bold(pc.blue('\n🤖 Harfai Config Initializer\n')));
 
-  for (const a of agents) {
-    writeAgentConfig(a, cwd);
+  if (options.workflow) {
+    const workflow = options.workflow as WorkflowType;
+    const workflows: Exclude<WorkflowType, 'all'>[] =
+      workflow === 'all' ? ['superpower', 'openspec'] : [workflow as Exclude<WorkflowType, 'all'>];
+    for (const w of workflows) {
+      writeAgentConfig(w, cwd);
+    }
+  } else {
+    const agent = options.agent as AgentType;
+    const agents: Exclude<AgentType, 'all'>[] =
+      agent === 'all'
+        ? ['claude', 'cursor', 'trae', 'copilot', 'generic']
+        : [agent as Exclude<AgentType, 'all'>];
+    for (const a of agents) {
+      writeAgentConfig(a, cwd);
+    }
   }
 
   console.log(
@@ -27,10 +40,10 @@ export function initCommand(options: InitOptions): void {
   );
 }
 
-function writeAgentConfig(agent: AgentType, cwd: string): void {
+function writeAgentConfig(agent: string, cwd: string): void {
   const template = getTemplate(agent);
   if (!template) {
-    console.warn(pc.yellow(`  ⚠ Unknown agent type: ${agent} — skipping`));
+    console.warn(pc.yellow(`  ⚠ Unknown agent/workflow type: ${agent} — skipping`));
     return;
   }
 

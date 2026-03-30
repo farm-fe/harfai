@@ -1,6 +1,6 @@
-import type { AgentTemplate } from '../index.js';
+import type { ConfigTemplate } from '../index.js';
 
-export const claudeTemplate: AgentTemplate = {
+export const claudeTemplate: ConfigTemplate = {
   outputPath: 'CLAUDE.md',
   content: `# CLAUDE.md
 
