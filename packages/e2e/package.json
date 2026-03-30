@@ -1,0 +1,18 @@
+{
+  "name": "@harfai/e2e",
+  "version": "0.1.0",
+  "description": "Playwright E2E test suite for Harfai",
+  "type": "module",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "test:report": "playwright show-report",
+    "install:browsers": "playwright install --with-deps",
+    "lint": "echo 'No linting for e2e package'"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.46.1",
+    "typescript": "^5.5.4"
+  }
+}
