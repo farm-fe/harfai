@@ -24,6 +24,9 @@
     "zustand": "^4.5.4"
   },
   "devDependencies": {
+    "@farmfe/cli": "beta",
+    "@farmfe/core": "beta",
+    "@farmfe/plugin-react": "beta",
     "@tailwindcss/vite": "4.2.2",
     "@testing-library/jest-dom": "^6.4.8",
     "@testing-library/react": "^16.0.0",
