@@ -49,4 +49,46 @@ describe('initCommand', () => {
   it('does not throw for unknown agent', () => {
     expect(() => initCommand({ agent: 'unknown-agent', cwd: TEST_DIR })).not.toThrow();
   });
+
+  describe('workflow flag', () => {
+    it('writes superpower brainstorm template when workflow=superpower', () => {
+      initCommand({ agent: 'generic', workflow: 'superpower', cwd: TEST_DIR });
+      const outPath = join(TEST_DIR, '.openspec/brainstorms/template.md');
+      expect(existsSync(outPath)).toBe(true);
+      const content = readFileSync(outPath, 'utf-8');
+      expect(content).toContain('Brainstorm:');
+      expect(content).toContain('Selected Approach');
+      expect(content).toContain('Next Steps');
+    });
+
+    it('writes openspec proposal template when workflow=openspec', () => {
+      initCommand({ agent: 'generic', workflow: 'openspec', cwd: TEST_DIR });
+      const outPath = join(TEST_DIR, '.openspec/proposals/template.md');
+      expect(existsSync(outPath)).toBe(true);
+      const content = readFileSync(outPath, 'utf-8');
+      expect(content).toContain('OpenSpec:');
+      expect(content).toContain('Test Command');
+      expect(content).toContain('Done When');
+      expect(content).toContain('Status');
+    });
+
+    it('writes both templates when workflow=all', () => {
+      initCommand({ agent: 'generic', workflow: 'all', cwd: TEST_DIR });
+      expect(existsSync(join(TEST_DIR, '.openspec/brainstorms/template.md'))).toBe(true);
+      expect(existsSync(join(TEST_DIR, '.openspec/proposals/template.md'))).toBe(true);
+    });
+
+    it('does not throw for unknown workflow', () => {
+      expect(() =>
+        initCommand({ agent: 'generic', workflow: 'unknown-workflow', cwd: TEST_DIR }),
+      ).not.toThrow();
+    });
+
+    it('workflow flag takes priority over agent flag', () => {
+      initCommand({ agent: 'claude', workflow: 'superpower', cwd: TEST_DIR });
+      // When workflow is set, only workflow output is written (not the agent file)
+      expect(existsSync(join(TEST_DIR, '.openspec/brainstorms/template.md'))).toBe(true);
+      expect(existsSync(join(TEST_DIR, 'CLAUDE.md'))).toBe(false);
+    });
+  });
 });

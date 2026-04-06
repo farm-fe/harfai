@@ -1,6 +1,6 @@
-import type { AgentTemplate } from '../index.js';
+import type { ConfigTemplate } from '../index.js';
 
-export const cursorTemplate: AgentTemplate = {
+export const cursorTemplate: ConfigTemplate = {
   outputPath: '.cursorrules',
   content: `# Cursor Rules for Harfai
 

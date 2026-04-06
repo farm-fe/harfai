@@ -1,6 +1,6 @@
-import type { AgentTemplate } from '../index.js';
+import type { ConfigTemplate } from '../index.js';
 
-export const traeTemplate: AgentTemplate = {
+export const traeTemplate: ConfigTemplate = {
   outputPath: '.trae/config.yaml',
   content: `# Trae configuration for Harfai
 # See AGENTS.md for full project conventions.
